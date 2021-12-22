@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">androidHomeTask02</string>
+    <string name="in">Вход</string>
+    <string name="greeting">Добро пожаловать!</string>
+    <string name="instruction">Выполните вход</string>
+    <string name="instruction1">или зарегистрируетесь</string>
+    <string name="input_email">Введите вашу почту</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="password_forgotten">Забыли пароль?</string>
+    <string name="click_here">Нажмите сюда</string>
+</resources>
