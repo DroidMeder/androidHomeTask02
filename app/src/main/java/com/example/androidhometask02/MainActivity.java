@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText eemail, epass;
     private TextView tv, tvIn,  greeting, greeting1, greeting2;
     private Toast toast;
+    private Button btnn;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = findViewById(R.id.btn);
+        btnn = findViewById(R.id.btn);
         scrollView=findViewById(R.id.scroll);
         scrollRel=findViewById(R.id.scrollRel);
         rtl=findViewById(R.id.rl1);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             scrollView.smoothScrollTo(0, eemail.getBottom());
         });
 
-        btn.setOnClickListener(v -> {
+        btnn.setOnClickListener(v -> {
             if(accessPermitted()){
                 if (rtl.getVisibility() == View.INVISIBLE) {
                     rtl.setVisibility(View.VISIBLE);
@@ -85,10 +86,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        tv.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Это не мои проблемы",
-                Toast.LENGTH_SHORT).show());
+        tv.setOnClickListener(v -> {
+            Toast.makeText(MainActivity.this, "Это не мои проблемы",
+                    Toast.LENGTH_SHORT).show();
+        });
 
-        eemail.addTextChangedListener(new TextWatcher() {
+        editlistener(eemail);
+        editlistener(epass);
+    }
+
+    public void editlistener(EditText etext){
+        etext. addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -102,32 +110,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()>0){
-                    btn.setBackgroundResource(R.drawable.draw);
+                    btnn.setBackgroundResource(R.drawable.draw);
                 }else {
-                    btn.setBackgroundResource(R.drawable.shape_btn);
+                    btnn.setBackgroundResource(R.drawable.shape_btn);
                 }
             }
         });
-        epass.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length()>0){
-                    btn.setBackgroundResource(R.drawable.draw);
-                }else {
-                    btn.setBackgroundResource(R.drawable.shape_btn);
-                }
-            }
-        });
     }
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on){
